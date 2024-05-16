@@ -1,0 +1,19 @@
+<!--一覧画面-->
+<!--コントローラから渡された@book変数内から1つずつ取り出して、book変数へ格納-->
+<% @book.each do |book| %>
+  <div>
+<!--詳細画面へのリンクを追加 -->
+    <%= link_to book_path(book.id) do %>
+        <%= image_tag book.get_image %>
+    <% end %>
+<!--bookにActiveStorageで設定したimageを表示.Bookモデル内に記述したメソッドを呼び出し-->
+    <%= image_tag book.get_image %>
+    <p>投稿ユーザー画像:<%= image_tag 'sample-author1.jpg' %></p>
+<!--book変数のtitleカラムを表示-->
+    <p>Title:<%= book.title %></p>
+<!--book変数のbodyカラムを表示-->
+    <p>Opinion:<%= book.body %></p>
+<!--book変数のuser_idに関連付けられているuserモデルのnameカラムを表示-->
+    <p>ユーザーネーム:<%= book.user.name %></p>
+  </div>
+<% end %>

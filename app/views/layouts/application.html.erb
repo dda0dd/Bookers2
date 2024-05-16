@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <!--登録、ログイン、ログアウトなどのリンクはサイト上部(ヘッダー)にまとめて置く-->
+    <header>
+  <!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
+      <% if user_signed_in? %>
+  <!--投稿フォームへのリンク-->
+      <li>
+        <%= link_to '投稿フォーム', new_book_path %>
+      </li>
+  <!--ヘッダーに設定(マイページへのリンク)すると、ログイン時に、どのページからでもアクセスできる-->
+      <li>
+        <%= link_to 'マイページ', user_path(current_user.id) %>
+      </li>
+  <!--ログアウト用のリンクを記述（link_toヘルパーのmethodオプションを設定）-->
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+  <!--ログイン済みの場合<%# if user_signed_in? %>から<%# else %>間のコードが表示-->
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+  <!--ログインしていない場合<%# else %>から<%# end %>間のコードが表示-->
+      <% end %>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>

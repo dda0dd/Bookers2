@@ -4,6 +4,13 @@ class Book < ApplicationRecord
 
 # 1:Nの「N」側にあたるモデル(Bookモデルに関連付けられるのは1つのUserモデルのため単数形の「user」)
   belongs_to :user
+  
+# titleが存在しているかを確認するバリデーション(空でないように設定)
+  validates :title, presence: true
+# bodyが存在しているかを確認するバリデーション
+  validates :body, presence: true, length: {maximum: 200}
+# imageが存在しているかを確認するバリデーション
+   validates :image, presence: true
 # 一覧機能で画像表示
   def get_image
     if image.attached?

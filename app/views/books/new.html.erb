@@ -1,5 +1,15 @@
 <!--投稿画面作成-->
 <h1>画像投稿フォーム</h1>
+<!--バリデーションによるエラーメッセージを表示-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <!--bookに画像をアップロード-->
 <%= form_with model: @book do |f| %>
   <h4>画像</h4>

@@ -4,10 +4,12 @@
   <%= image_tag @book.get_image %>
   <p>Title:<%= @book.title %></p>
   <p>Opinion:<%= @book.body %></p>
-  <p>投稿ユーザー画像:<%= image_tag 'sample-author1.jpg' %></p>
+<!--ダミーで表示させていた画像の記述を変更-->
+  <p>投稿ユーザー画像:<%= image_tag @book.user.get_profile_image(100,100) %></p>
+  <!--<p>投稿ユーザー画像:<%#= image_tag 'sample-author1.jpg' %></p>-->
   <p>ユーザーネーム:<%= @book.user.name %></p>
 <!--投稿日付の形式を変換しているメソッド(年/月/日のフォーマットへ変換)-->
-  <p>投稿日:<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <p>投稿日時:<%= @book.created_at.strftime('%Y/%m/%d') %></p>
 <!--削除を実行するためのリンクを追記-->
   <% if @book.user == current_user %>
     <%= link_to "削除", book_path(@book), method: :delete %>

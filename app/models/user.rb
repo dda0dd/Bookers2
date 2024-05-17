@@ -9,6 +9,11 @@ class User < ApplicationRecord
 # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
   has_one_attached :profile_image
 
+# nameが存在しているかを確認するバリデーション(uniqueness:一意性)
+  validates :name, presence: true, uniqueness: true, length: {in: 2..20}
+# introductionが存在しているかを確認するバリデーション(maximum:最大文字数)
+  validates :introduction, length: {maximum: 50}
+
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 # onlyオプションで生成するルーティングを限定（新規投稿、一覧、詳細機能、削除）
   resources :books, only: [:new, :create, :index, :show, :destroy]
 # resourcesとonlyを使って、show, editのアクションのみ追加
-  resources :users, only: [:show, :edit]
+# only: []内にupdateを追加
+  resources :users, only: [:show, :edit, :update]
 # devise使用時にURLとしてusersを含む記述
   devise_for :users
 

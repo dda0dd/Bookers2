@@ -11,13 +11,19 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 # @book(投稿データ)のuser_idを、current_user.id(今ログインしているユーザーのID)に指定することで投稿データに、今ログイン中のユーザーのIDを持たせる
     @book.user_id = current_user.id
-    @book.save
-    redirect_to books_path
+    if @book.save
+      redirect_to books_path
+# バリデーションで保存できなかった時はsaveメソッドがfalseになり、renderでbooks/new.html.erbが表示され投稿ページを再表示する設定
+    else
+      render :new
+    end
   end
 
 # 投稿一覧で表示する全ての画像をコントローラで取得
   def index
-    @book = Book.all
+# 1ページ分の決められた数のデータだけを、新しい順に取得するに変更(kaminari)
+    @books = Book.page(params[:page])
+    # @book = Book.all
   end
 # 詳細画面が表示されるように設定
   def show

@@ -2,44 +2,98 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!--どのページにも共通のヘッダー部分をBootstrap使用して整える-->
+    <!--変更記述-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!--FontAwesome導入（KitCode）-->
+    <script src="https://kit.fontawesome.com/c1b98882c9.js" crossorigin="anonymous"></script>
+  <!--Bootstrapの導入でlinkをpackに変更-->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body　class="d-flex flex-column vh-100">
   <!--登録、ログイン、ログアウトなどのリンクはサイト上部(ヘッダー)にまとめて置く-->
-    <header>
+    <header class="shadow-sm">
+  <!--"ナビゲーションバー表示 指定ブレークポイントに応じて切り替え カラースキーム指定"-->
+      <nav class="navbar navber-expand-lg navbar-light">
+        <div class="container">
+  <!--(ロゴ部分の構成)"ロゴに使用のnavbarサポートclass paddingの指定（上下左右にサイズ指定）"-->
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
+  <!--(ナビゲーションアイコン表示部分)"ナビゲーションアイコン枠" "ナビゲーションアイコン三本線"-->
+          <button class="navbar-toggler" type="button" date-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <!--ナビゲーションアイコンの開く、閉じる動作と見た目の部分は<button>から<ul>-->
+            <ul class="navbar-nav ml-auto">
   <!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
-      <% if user_signed_in? %>
-  <!--投稿フォームへのリンク-->
-      <li>
-        <%= link_to '投稿フォーム', new_book_path %>
-      </li>
-  <!--ヘッダーに設定(マイページへのリンク)すると、ログイン時に、どのページからでもアクセスできる-->
-      <li>
-        <%= link_to 'マイページ', user_path(current_user.id) %>
-      </li>
+            <% if user_signed_in? %>
   <!--ログアウト用のリンクを記述（link_toヘルパーのmethodオプションを設定）-->
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
+    <!--class="nav-item"追記-->
+            <li class="nav-item">
+  <!--, class: 'nav-link text-dark'追記-->
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+  <!--投稿フォームへのリンク-->
+    <!--class="nav-item"追記-->
+            <li class="nav-item">
+  <!--, class: 'nav-link text-dark'追記-->
+              <%= link_to '投稿フォーム', new_book_path, class: 'nav-link text-dark' %>
+            </li>
+  <!--ヘッダーに設定(マイページへのリンク)すると、ログイン時に、どのページからでもアクセスできる-->
+    <!--class="nav-item"追記-->
+            <li class="nav-item">
+  <!--, class: 'nav-link text-dark'追記-->
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+            </li>
   <!--ログイン済みの場合<%# if user_signed_in? %>から<%# else %>間のコードが表示-->
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
+            <% else %>
+    <!--class="nav-item"追記-->
+            <li class="nav-item">
+  <!--, class: 'nav-link text-dark'追記-->
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+            </li>
+    <!--class="nav-item"追記-->
+            <li class="nav-item">
+  <!--, class: 'nav-link text-dark'追記-->
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+            </li>
   <!--ログインしていない場合<%# else %>から<%# end %>間のコードが表示-->
-      <% end %>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p>CopyRight Infratop.inc</p>
+            <!--<%#= image_tag('logo-white.png') %>-->
+          <!--</div>-->
+          <!--<div class="col-md-8">-->
+          <!--  <h6 class="text-white mt-2 mb-3">Link</h6>-->
+          <!--  <ul class="p-0 list-unstyled">-->
+          <!--    <li>-->
+          <!--      <a href="" title="About" class="text-white-50">会社概要</a>-->
+          <!--    </li>-->
+          <!--    <li>-->
+          <!--      <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>-->
+          <!--    </li>-->
+          <!--  </ul>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

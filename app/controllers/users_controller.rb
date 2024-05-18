@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 # ユーザの詳細ページ
 # URLに記載されたIDを参考に、必要なUserモデルを取得する処理
   def show
+# エラー時にroutesの順番が関係しているかも
     @user = User.find(params[:id])
 # kaminariインストール後変更
     @books = @user.books.page(params[:page])
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
   end
 # 編集機能用のアクションを定義
   def edit
-    @user = edit_User.find(params[:id])
+    @user = User.find(params[:id])
   end
 # 更新機能を作成
   def update

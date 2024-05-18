@@ -1,16 +1,38 @@
 <!--部分テンプレートファイル(views/books/index.html.erb, views/users/show.html.erb)-->
+<!--投稿一覧構成-->
+<div class="card-list-container py-5">
 <!--部分テンプレートが呼び出されたときに、Viewから渡される変数(ローカル変数)が使えるように変更-->
 <% books.each do |book| %>
-<div>
+<!--class="card w-50 mx-auto mt-4 shadow-lg"追記-->
+<!--カードで表示したい部分-->
+<div class="card w-50 mx-auto mt-4 shadow-lg">
   <%= link_to book_path(book.id) do %>
-    <%= image_tag book.get_image %>
+<!--, class: "card-img-top";追記-->
+    <%= image_tag book.get_image, class: "card-img-top"; %>
   <% end %>
-
-  <p>投稿ユーザー画像:<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>Title:<%= book.title %></p>
-  <p>Opinion:<%= book.body %></p>
-  <p>ユーザーネーム:<%= book.user.name %></p>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-2">
+        <%= image_tag book.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
+      </div>
+      <div class="col-10">
+        <p class="card-title">
+          <%= link_to(book_path(book.id), class: "text-dark") do %>
+            <strong><i class="far fa-flag"></i><span><%= book.title %></span></strong>
+          <% end %>
+        </p>
+        <p class="card-text">感想:<%= book.caption %></p>
+        <span><i class="fas fa-user"></i> By <%= book.user.name %> | </span>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>
 <!--この部分テンプレートはユーザーの詳細画面と投稿画像の一覧画面で使用（kaminari）-->
 <%= paginate books %>
+</div>
+
+  <!--<p>投稿ユーザー画像:<%#= image_tag book.user.get_profile_image(100,100) %></p>-->
+  <!--<p>Title:<%#= book.title %></p>-->
+  <!--<p>Opinion:<%#= book.body %></p>-->
+  <!--<p>ユーザーネーム:<%#= book.user.name %></p>-->

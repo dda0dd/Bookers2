@@ -1,8 +1,9 @@
 <!--部分テンプレートファイル(views/books/index.html.erb, views/users/show.html.erb)-->
-<!--投稿一覧構成-->
+<!--投稿一覧構成(User info)-->
 <div class="card-list-container py-5">
 <!--部分テンプレートが呼び出されたときに、Viewから渡される変数(ローカル変数)が使えるように変更-->
-<% books.each do |book| %>
+  <!--エラー表示で@を追記-->
+<% @books.each do |book| %>
 <!--class="card w-50 mx-auto mt-4 shadow-lg"追記-->
 <!--カードで表示したい部分-->
 <div class="card w-50 mx-auto mt-4 shadow-lg">
@@ -29,7 +30,7 @@
 </div>
 <% end %>
 <!--この部分テンプレートはユーザーの詳細画面と投稿画像の一覧画面で使用（kaminari）-->
-<%= paginate books %>
+<%#= paginate @books %>
 </div>
 
   <!--<p>投稿ユーザー画像:<%#= image_tag book.user.get_profile_image(100,100) %></p>-->

@@ -21,6 +21,13 @@ class UsersController < ApplicationController
     flash[:success] = "Welcome! You have signed up successfully."
     redirect_to user_path(user.id)
   end
+# ユーザ一覧作成
+  def index
+# 現在ログインしているユーザ（自分）
+    @user = current_user
+# 上書きされるので@userを複数形にする
+    @users = User.all
+  end
 
   private
 

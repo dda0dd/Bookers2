@@ -1,37 +1,83 @@
-<h2>Sign up</h2>
 <!--ユーザ登録画面-->
+<!--Sign upからのリンク先記述-->
 
+<main>
+  <p id="notice"></p>
+<!--Bootstrapの枠組み-->
+  <div class="container">
+<!--Bootstrapの列-->
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+        <h2>Sign up</h2>
 <!--form_forは現在は非推奨のためform_withへと変更-->
-<%= form_with model: @user, url: user_registration_path do |f| %>
-<%= render "devise/shared/error_messages", resource: resource %>
-
-<!--ユーザ登録時にnameも登録するためのフォーム追加-->
-<div class="field">
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
-</div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= form_with model: @user, url: user_registration_path do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+<!--Nameの記述-->
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+          </div>
+<!--Emailの記述-->
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+<!--Passwordの記述-->
+          <div class="field">
+            <% if @minimum_password_length %>
+            <%= f.label :password %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+<!--Password confirmationの記述-->
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+<!--Sign upボタンの記述-->
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div>
+<!--Log inボタンの記述-->
+            <a href="/users/sign_in">Log in</a>
+          <% end %><br />
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+</main>
 <% end %>
-
 <%= render "devise/shared/links" %>
+            <!--<label for="user_name">Name</label>-->
+<!--改行-->
+            <!--<br>-->
+            <!--<input autofocus="autofocus" class="name" type="text" name="user[name]" id="user_name">-->
+            <!--<label for="user_email">Email</label>-->
+            <!--<br>-->
+            <!--<input autofocus="autofocus" class="email" type="email" value name="user[email]" id="user_email">-->
+            <!--<label for="user_password">Password</label>-->
+            <!--<em>(6 characters minimum)</em>-->
+            <!--<br>-->
+            <!--<input autocomplete="off" class="password" type="password" name="user[password]" id="user_password">-->
+            <!--<label for="user_password_confirmation">Password confirmation</label>-->
+            <!--<br>-->
+            <!--<input autocomplete="off" class="password_confirm" type="password" name="user[password_confirmation]" id="user_password_confirmation">-->
+            <!--<input type="submit" name="commit" value="Sign up" class="btn btn-sm btn-success" data-disable-with="Sign up">-->
+<!--ユーザ登録時にnameも登録するためのフォーム追加-->
+<!--<div class="field">-->
+<!--</div>-->
+
+<!--  <div class="field">-->
+<!--  </div>-->
+
+<!--  <div class="field">-->
+<!--  </div>-->
+
+<!--  <div class="field">-->
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+<!--  </div>-->
+
+
+<!--        <form id="new_user" class="new_user" action="/users" accept-charset="UTF-8" method="post">-->
+<!--        </form>-->

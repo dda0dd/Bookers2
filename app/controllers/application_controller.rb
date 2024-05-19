@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
 
 # ログイン後の遷移先を投稿画像一覧画面に設定
   def after_sign_in_path_for(resource)
-    book_path
+# エラー表示でsを追記
+    books_path
   end
 
 # after_sign_in_path_forはサインイン後にどこに遷移するか設定しているメソッド
@@ -21,10 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
 
 # devise_parameter_sanitizer.permitメソッド使用でユーザー登録(sign_up)時にユーザー名(name)のデータ操作を許可している
   def configure_permitted_parameters

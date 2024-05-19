@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: {in: 2..20}
 # introductionが存在しているかを確認するバリデーション(maximum:最大文字数)
   validates :introduction, length: {maximum: 50}
-
+# エラー表示（引数の数が間違っている）
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

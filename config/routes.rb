@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :books, only: [:new, :create, :index, :show, :destroy]
 # resourcesとonlyを使って、show, editのアクションのみ追加
 # only: []内にupdateを追加
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :index]
 
 # getからroot to（ルートパス設定）に変更
   root to: 'homes#top'

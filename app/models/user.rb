@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 # 1:Nの「1」側にあたるモデル(1人のユーザーが何をたくさん持っているか？という定義)
-  has_many :post_images, dependent: :destroy
+  has_many :books, dependent: :destroy
 # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
   has_one_attached :profile_image
 
@@ -14,7 +14,7 @@ class User < ApplicationRecord
 # introductionが存在しているかを確認するバリデーション(maximum:最大文字数)
   validates :introduction, length: {maximum: 50}
 # エラー表示（引数の数が間違っている）
-  def get_profile_image
+  def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')

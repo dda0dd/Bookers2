@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 # kaminariインストール後変更
     @books = @user.books.page(params[:page])
+    @book = Book.new
 # 特定のユーザ（@user）に関連付けられた投稿全て（.books）を取得し@booksに渡す処理を行う
     # @books = @user.books
   end

@@ -1,0 +1,72 @@
+<!--ヘッダー部分記述-->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbaraNavDropdown" 
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          
+          
+<!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
+          <% if user_signed_in? %>
+<!--Homeアイコン-->
+          <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <i class="fa-solid fa-house pe-5"></i>Home
+            <% end %>
+          </li>
+<!--Usersアイコン-->
+          <li>
+            <%= link_to users_path, class: "nav-link text-light" do %>
+              <i class="fa-solid fa-users pe-5"></i>Users
+            <% end %>
+          </li>
+<!--Booksアイコン-->
+          <li>
+            <%= link_to books_path, class: "nav-link text-light" do %>
+              <i class="fa-solid fa-book-open pe-5"></i>Books
+            <% end %>
+          </li>
+<!--Log outアイコン-->
+          <li>
+            <%= link_to destroy_user_session_path,method: :delete, class: "nav-link text-light" do %>
+              <i class="fa-solid fa-right-from-bracket pe-5"></i>Log out
+            <% end %>
+          </li>
+          
+<!--ログイン済みの場合<%# if user_signed_in? %>から<%# else %>間のコードが表示-->
+          <% else %>
+<!--Homeアイコン-->
+          <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <i class="fa-solid fa-house pe-5"></i>Home
+            <% end %>
+          </li>
+<!--About(link)アイコン-->
+          <li>
+            <%= link_to about_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-link pe-5"></i>About
+            <% end %>
+          </li>
+<!--Sign upアイコン-->
+          <li>
+            <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-user-plus pe-5"></i>Sign up
+            <% end %>
+          </li>
+  <!--Log inアイコン-->
+          <li>
+            <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+             <i class="fa-solid fa-right-to-bracket pe-5"></i>Log in
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

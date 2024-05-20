@@ -32,8 +32,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-    # 名前保存するカラム（ユーザ登録時に名前登録するため）
+  # 名前保存するカラム（ユーザ登録時に名前登録するため）
       t.string :name
+  # 自己紹介文
+      t.text :introduction
 
 
       t.timestamps null: false

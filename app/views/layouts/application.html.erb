@@ -2,123 +2,205 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+  <!--どのページにも共通のヘッダー部分をBootstrap使用して整える-->
+    <!--変更記述-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <!--どのページにも共通のヘッダー部分をBootstrap使用して整える-->
-    <!--変更記述-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
   <!--FontAwesome導入（KitCode）-->
     <script src="https://kit.fontawesome.com/c1b98882c9.js" crossorigin="anonymous"></script>
   <!--Bootstrapの導入でlinkをpackに変更-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--<%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>-->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
-
-  <body　class="d-flex flex-column vh-100">
-
-  <header>
-<!--ナビゲーションバーの記述-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <span>Bookers</span>
-        </a>
-<!--(ナビゲーションアイコン表示部分)"ナビゲーションアイコン枠" "ナビゲーションアイコン三本線"-->
-  <!--アイコン押しての開く（閉じる）動作記述-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                      aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>
-<!--ナビゲーションアイコンの開く、閉じる動作と見た目の部分は<button>から<ul>-->
-          <ul class="navbar-nav ml-auto">
-<!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
-            <% if user_signed_in? %>
-            <li>
-              <a class="nav-link text-light" href="/">
-<!--Homeアイコン-->
-                <i class="fa-solid fa-house pe-5"></i>Home
-              </a>
-            </li>
-
-            <li>
-              <a class="nav-link text-light" href="/users">
-<!--Usersアイコン-->
-                <i class="fa-solid fa-users pe-5"></i>Users
-              </a>
-            </li>
-            <li>
-              <a class="nav-link text-light" href="/books">
-<!--Booksアイコン-->
-                <i class="fa-solid fa-book-open pe-5"></i>Books
-              </a>
-            </li>
-            <li>
-              <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
-<!--Log outアイコン-->
-                <i class="fa-solid fa-right-from-bracket pe-5"></i>Log out
-              </a>
-            </li>
-<!--ログイン済みの場合<%# if user_signed_in? %>から<%# else %>間のコードが表示-->
-            <% else %>
-            <li>
-              <a class="nav-link text-light" href="/">
-<!--Homeアイコン-->
-                <i class="fa-solid fa-house pe-5"></i>Home
-              </a>
-            </li>
-            <li>
-              <a class="nav-link text-light" href="/home/about">
-<!--About(link)アイコン-->
-                <i class="fa-solid fa-link pe-5"></i>About
-              </a>
-            </li>
-            <li>
-              <a class="nav-link text-light" href="/users/sign_up">
-<!--Sign upアイコン-->
-              <i class="fa-solid fa-user-plus pe-5"></i>Sign up
-              </a>
-            </li>
-            <li>
-              <a class="nav-link text-light" href="/users/sign_in">
-<!--Log inアイコン-->
-                <i class="fa-solid fa-right-to-bracket pe-5"></i>Log in
-              </a>
-            </li>
-<!--ログインしていない場合<%# else %>から<%# end %>間のコードが表示-->
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
+<!--部分テンプレート読み込み記述（header,footer/）-->
+  <body>
+  <%= render 'layouts/header' %>
 <!--メイン追記-->
     <main>
     <!--<main class="mb-auto">-->
-      <p id="notice"></p>
+      <!--<p id="notice"></p>-->
 <!--viewファイルの記述などを表示する記述-->
-    <%= yield %>
+      <%= yield %>
     </main>
+    <%= render 'layouts/footer'%>
+  </body>
+</html>
+  
+  <!--<body　class="d-flex flex-column vh-100">-->
+    
+    <!--<header class="shadow-sm">-->
+    
+      <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+      <!--  <div class="container">-->
+      
+          <!--<a class="navbar-brand p-3" href="/"><%#= image_tag('logo.png') %></a>-->
+          
+          <!--<a class="navbar-brand" href="/">-->
+          <!--  <span>Bookers</span>-->
+          <!--</a>-->
+          
+          <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"-->
+          <!--              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+          <!--  <span class="navbar-toggler-icon"></span>-->
+          <!--</button>-->
+          
+          <!--<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
+          <!--  <ul class="navbar-nav ml-auto">-->
+<!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
+            <%# if user_signed_in? %>
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/">-->
+<!--Homeアイコン-->
+<!--                <i class="fa-solid fa-house pe-5"></i>Home-->
+<!--              </a>-->
+<!--            </li>-->
+
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/users">-->
+<!--Usersアイコン-->
+<!--                <i class="fa-solid fa-users pe-5"></i>Users-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/books">-->
+<!--Booksアイコン-->
+<!--                <i class="fa-solid fa-book-open pe-5"></i>Books-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">-->
+<!--Log outアイコン-->
+<!--                <i class="fa-solid fa-right-from-bracket pe-5"></i>Log out-->
+<!--              </a>-->
+<!--            </li>-->
+<!--ログイン済みの場合<%# if user_signed_in? %>から<%# else %>間のコードが表示-->
+            <%# else %>
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/">-->
+<!--Homeアイコン-->
+<!--                <i class="fa-solid fa-house pe-5"></i>Home-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--No route matches [GET] "/home/about"でRouting Errorが発生homeにsを追記（application_controller.rbでaboutの許可追記）-->
+<!--              <a class="nav-link text-light" href="/homes/about">-->
+<!--About(link)アイコン-->
+<!--                <i class="fa-solid fa-link pe-5"></i>About-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/users/sign_up">-->
+<!--Sign upアイコン-->
+<!--              <i class="fa-solid fa-user-plus pe-5"></i>Sign up-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/users/sign_in">-->
+<!--Log inアイコン-->
+<!--                <i class="fa-solid fa-right-to-bracket pe-5"></i>Log in-->
+<!--              </a>-->
+<!--            </li>-->
+<!--ログインしていない場合<%# else %>から<%# end %>間のコードが表示-->
+            <%# end %>
+    <!--      </ul>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </nav>-->
+    <!--</header>-->
+
+<!--ナビゲーションバーの記述-->
+    <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+      <!--<div class="container">-->
+      <!--  <a class="navbar-brand" href="/">-->
+      <!--    <span>Bookers</span>-->
+      <!--  </a>-->
+<!--(ナビゲーションアイコン表示部分)"ナビゲーションアイコン枠" "ナビゲーションアイコン三本線"-->
+  <!--アイコン押しての開く（閉じる）動作記述-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"-->
+<!--                      aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">-->
+<!--          <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>-->
+<!--ナビゲーションアイコンの開く、閉じる動作と見た目の部分は<button>から<ul>-->
+<!--          <ul class="navbar-nav ml-auto">-->
+<!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
+            <!--<%# if user_signed_in? %>-->
+            <!--<li>-->
+            <!--  <a class="nav-link text-light" href="/">-->
+<!--Homeアイコン-->
+            <!--    <i class="fa-solid fa-house pe-5"></i>Home-->
+            <!--  </a>-->
+            <!--</li>-->
+
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/users">-->
+<!--Usersアイコン-->
+<!--                <i class="fa-solid fa-users pe-5"></i>Users-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/books">-->
+<!--Booksアイコン-->
+<!--                <i class="fa-solid fa-book-open pe-5"></i>Books-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">-->
+<!--Log outアイコン-->
+<!--                <i class="fa-solid fa-right-from-bracket pe-5"></i>Log out-->
+<!--              </a>-->
+<!--            </li>-->
+<!--ログイン済みの場合<%# if user_signed_in? %>から<%# else %>間のコードが表示-->
+<!--            <%# else %>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/">-->
+<!--Homeアイコン-->
+<!--                <i class="fa-solid fa-house pe-5"></i>Home-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--No route matches [GET] "/home/about"でRouting Errorが発生homeにsを追記（application_controller.rbでaboutの許可追記）-->
+<!--              <a class="nav-link text-light" href="/homes/about">-->
+<!--About(link)アイコン-->
+<!--                <i class="fa-solid fa-link pe-5"></i>About-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/users/sign_up">-->
+<!--Sign upアイコン-->
+<!--              <i class="fa-solid fa-user-plus pe-5"></i>Sign up-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a class="nav-link text-light" href="/users/sign_in">-->
+<!--Log inアイコン-->
+<!--                <i class="fa-solid fa-right-to-bracket pe-5"></i>Log in-->
+<!--              </a>-->
+<!--            </li>-->
+<!--ログインしていない場合<%# else %>から<%# end %>間のコードが表示-->
+<!--            <%# end %>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nav>-->
+
 
 
 <!--フッター記述-->
-    <footer>
-      <div class="container mt-5">
-        <div class="row">
+<!--    <footer>-->
+<!--      <div class="container mt-5">-->
+<!--        <div class="row">-->
 <!--幅指定-->
-          <div class="mx-auto">
-            <p>CopyRight Infratop.inc</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+<!--          <div class="mx-auto">-->
+<!--            <p>CopyRight Infratop.inc</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </footer>-->
 
 <!--登録、ログイン、ログアウトなどのリンクはサイト上部(ヘッダー)にまとめて置く-->
     <!--<header class="shadow-sm">-->

@@ -10,15 +10,15 @@ class Book < ApplicationRecord
 # bodyが存在しているかを確認するバリデーション
   validates :body, presence: true, length: {maximum: 200}
 # imageが存在しているかを確認するバリデーション
-   validates :image, presence: true
+  # validates :image, presence: true
 # 一覧機能で画像表示
-  def get_image
-    if image.attached?
-      image
-    else
-      'no_image.jpg'
-    end
-  end
+  # def get_image
+  #   if image.attached?
+  #     image
+  #   else
+  #     'no_image.jpg'
+  #   end
+  # end
 
 # 画像が設定されない時にno_image.jpg（画像）をデフォルト画像としてActiveStorageに格納、その画像を表示する
   def get_image

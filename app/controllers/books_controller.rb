@@ -12,10 +12,11 @@ class BooksController < ApplicationController
 # @book(投稿データ)のuser_idを、current_user.id(今ログインしているユーザーのID)に指定することで投稿データに、今ログイン中のユーザーのIDを持たせる
     @book.user_id = current_user.id
     if @book.save
-      redirect_to books_path
+      redirect_to book_path(@book.id)
 # バリデーションで保存できなかった時はsaveメソッドがfalseになり、renderでbooks/new.html.erbが表示され投稿ページを再表示する設定
     else
-      render :new
+      @books = Book.all
+      render :index
     end
   end
 
@@ -37,6 +38,12 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.destroy
     redirect_to Books_path
+  end
+
+  def edit
+  end
+
+  def update
   end
 
 

@@ -2,20 +2,23 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>Bookers</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbaraNavDropdown" 
+<!--ナビゲーションバーのBookers(homes/topへのリンク)-->
+       <a class="navbar-brand" href="/"><span>Bookers</span></a>
+<!--ナビゲーションバーボタン（アイコン）-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           
           
 <!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
           <% if user_signed_in? %>
-<!--Homeアイコン-->
+<!--Homeアイコン(users/showへのリンク)-->
           <li>
-            <%= link_to root_path, class: "nav-link text-light" do %>
+            <%= link_to users_path(:id), class: "nav-link text-light" do %>
               <i class="fa-solid fa-house pe-5"></i>Home
             <% end %>
           </li>

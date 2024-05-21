@@ -1,7 +1,56 @@
-<!--投稿画像の詳細ページ-->
+<!--投稿書籍の詳細ページ-->
+
 <div class="post-detail py-5 bg-light">
   <div class="container">
     <div class="card mx-auto mt-4 shadow-lg">
+    </div>
+  </div>
+</div>
+
+<!--フラッシュメッセージ（books_controller.rbで定義）-->
+<div>
+  <%= flash[:notice] %>
+</div>
+<!--削除を実行するためのリンクを追記-->
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+<!--投稿ユーザー画像-->
+        <td>
+          <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
+        </td>
+<!--ユーザーネーム-->
+        <td>
+          <%= link_to @book.user.name, user_path(@user) 
+          <p><%= @book.user.name %></p>
+        </td>
+    <% if @book.user == current_user %>
+<!--本のタイトル-->
+        <td>
+          <%= link_to "title", book_path(@book) %>
+          <!--<p><%#= @book.title %></p>-->
+        </td>
+<!--本の感想-->
+        <td>
+          <p><%= @book.body %></p>
+        </td>
+        
+<!--Editボタン-->
+        <td>
+          <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success" %> 
+        </td>
+<!--Destroyボタン-->
+        <td>
+          <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
       <%#= image_tag @book.get_image, class: "card-img-top" %>
       <!--<div class="card-body">-->
       <!--  <div class="row">-->
@@ -62,52 +111,10 @@
         <!--    <%#= f.submit "送信する", class: "btn btn-lg btn-info mt-2 float-right" %>-->
         <!--  <%# end %>-->
         <!--</div>-->
-      </div>
-    </div>
-  </div>
 <!--<div>-->
   <%#= image_tag @book.get_image %>
 <!--ダミーで表示させていた画像の記述を変更-->
   <!--<p>投稿ユーザー画像:<%#= image_tag 'sample-author1.jpg' %></p>-->
 <!--投稿日付の形式を変換しているメソッド(年/月/日のフォーマットへ変換)-->
   <!--<p>投稿日時:<%#= @book.created_at.strftime('%Y/%m/%d') %></p>-->
-<!--削除を実行するためのリンクを追記-->
-<div class="col-md-8 offset-md-1">
-  <h2>Book detail</h2>
-  <table class="table">
-    <tbody>
-      <tr>
-<!--投稿ユーザー画像-->
-        <td>
-          <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
-        </td>
-<!--ユーザーネーム-->
-        <td>
-          <%= link_to @book.user.name, user_path(@user) 
-          <!--<p><%= @book.user.name %></p>-->
-        </td>
-    <% if @book.user == current_user %>
-<!--本のタイトル-->
-        <td>
-          <%= link_to "title", book_path(@book) %>
-          <!--<p><%#= @book.title %></p>-->
-        </td>
-<!--本の感想-->
-        <td>
-          <p><%= @book.body %></p>
-        </td>
-        
-<!--Editボタン-->
-        <td>
-          <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success" %> 
-        </td>
-<!--Destroyボタン-->
-        <td>
-          <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy" %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
 <!--</div>-->

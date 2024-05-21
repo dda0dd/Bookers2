@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
 # サクセスメッセージ（successfullyの言葉が含む）
-    flash[:success] = "Welcome! You have signed up successfully."
+  # users/showへリンク
+    flash[:success] = "You have updated user successfully."
     redirect_to user_path(user.id)
   end
 # ユーザ一覧作成

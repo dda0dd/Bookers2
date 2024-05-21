@@ -17,8 +17,9 @@
 <!--deviseの機能を使ってログインしているか、ログインしていないかを判断するヘルパーメソッド-->
           <% if user_signed_in? %>
 <!--Homeアイコン(users/showへのリンク)-->
+    <!--current_user(ログインしているユーザ)-->
           <li>
-            <%= link_to users_path(:id), class: "nav-link text-light" do %>
+            <%= link_to user_path(current_user), class: "nav-link text-light" do %>
               <i class="fa-solid fa-house pe-5"></i>Home
             <% end %>
           </li>

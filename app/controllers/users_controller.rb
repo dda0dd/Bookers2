@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 # ユーザの詳細ページ
 
 # 各アクション実行前に実行したい処理指定
-before_action :is_matching_login_user, only: [:edit]
+# before_action :is_matching_login_user, only: [:edit]
 # URLに記載されたIDを参考に、必要なUserモデルを取得する処理
   def show
 # エラー時にroutesの順番が関係しているかも
@@ -16,8 +16,8 @@ before_action :is_matching_login_user, only: [:edit]
 # 編集機能用のアクションを定義
   def edit
     @user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to users_path
+    unless @user.id == current_user.id
+      redirect_to user_path(current_user.id)
     end
   end
 # 更新機能を作成
@@ -48,10 +48,10 @@ before_action :is_matching_login_user, only: [:edit]
   end
 
 # アクセス制限
-  def is_matching_login_user
-    @user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to users_path
-    end
-  end
+  # def is_matching_login_user
+  #   @user = User.find(params[:id])
+  #   unless user.id == current_user.id
+  #     redirect_to users_path
+  #   end
+  # end
 end

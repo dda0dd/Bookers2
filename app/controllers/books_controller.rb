@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 # 画像投稿の画面を表示するアクションメソッド
 
 # 各アクション実行前に実行したい処理指定
-before_action :is_matching_login_user, only: [:edit]
+# before_action :is_matching_login_user, only: [:edit]
   def new
 # form_withに渡すための「空のモデル」を用意
     @book = Book.new
@@ -56,9 +56,9 @@ before_action :is_matching_login_user, only: [:edit]
 
   def edit
     @book = Book.find(params[:id])
-    # unless @book.id == current_user.id
-    #   redirect_to books_path
-    # end
+    unless @book.user.id == current_user.id
+      redirect_to books_path
+    end
   end
 
   def update
@@ -85,11 +85,11 @@ before_action :is_matching_login_user, only: [:edit]
   end
   
 # アクセス制限
-  def is_matching_login_user
-    @book = Book.find(params[:id])
-    unless @book.id == current_user.id
-      redirect_to books_path
+  # def is_matching_login_user
+  #   @book = Book.find(params[:id])
+  #   unless @book.id == current_user.id
+  #     redirect_to books_path
       
-    end
-  end
+  #   end
+  # end
   end

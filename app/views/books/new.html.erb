@@ -1,47 +1,47 @@
 <!--投稿画面作成(投稿フォーム構成)-->
-<div class="container">
-  <div class="row no-gutters">
+<!--<div class="container">-->
+<!--  <div class="row no-gutters">-->
 <!--画面幅が切り替わり時、入力フォームの幅などを調節するためにcolを二つ指定-->
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+<!--    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">-->
 <!--<h1>画像投稿フォーム</h1>を変更-->
-      <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
-      <div class="form-body p-4">
-        <% if @book.errors.any? %>
-          <ul class="alert alert-danger" role="alert">
-            <h6 class="alert-heading">
-              <%= @book.errors.count %>件のエラーが発生しました
-            </h6>
-            <% @book.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
-        <%= form_with model: @book do |f| %>
-          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
-          <div class="input-group mb-3 mt-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
-            </div>
+<!--      <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>-->
+<!--      <div class="form-body p-4">-->
+<!--        <%# if @book.errors.any? %>-->
+<!--          <ul class="alert alert-danger" role="alert">-->
+<!--            <h6 class="alert-heading">-->
+<!--              <%#= @book.errors.count %>件のエラーが発生しました-->
+<!--            </h6>-->
+<!--            <%# @book.errors.full_messages.each do |message| %>-->
+<!--              <li><%#= message %></li>-->
+<!--            <%# end %>-->
+<!--          </ul>-->
+<!--        <%# end %>-->
+<!--        <%#= form_with model: @book do |f| %>-->
+<!--          <%#= f.file_field :image, accept: "image/*", class: "w-100" %>-->
+<!--          <div class="input-group mb-3 mt-4">-->
+<!--            <div class="input-group-prepend">-->
+<!--              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>-->
+<!--            </div>-->
 <!--フォーム部品はform-controlを使用-->
-            <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
-          </div>
-          <%= f.text_area :caption, class: "form-control", rows: "3", placeholder: "Opinion" %>
-          <hr>
-          <%= f.submit '投稿', class: "btn btn-lg btn-block btn-info mt-4" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<!--            <%#= f.text_field :title, class: "form-control", placeholder: "Title" %>-->
+<!--          </div>-->
+<!--          <%#= f.text_area :caption, class: "form-control", rows: "3", placeholder: "Opinion" %>-->
+<!--          <hr>-->
+<!--          <%#= f.submit '投稿', class: "btn btn-lg btn-block btn-info mt-4" %>-->
+<!--        <%# end %>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <!--バリデーションによるエラーメッセージを表示-->
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<!--<%# if @book.errors.any? %>-->
+<!--  <%#= @book.errors.count %>件のエラーが発生しました-->
+<!--  <ul>-->
+<!--    <%# @book.errors.full_messages.each do |message| %>-->
+<!--      <li><%#= message %></li>-->
+<!--    <%# end %>-->
+<!--  </ul>-->
+<!--<%# end %>-->
 
 <!--bookに画像をアップロード-->
 <%#= form_with model: @book do |f| %>

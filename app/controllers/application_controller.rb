@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 
 # after_sign_out_path_forはサインアウト後にどこに遷移するかを設定しているメソッド
   def after_sign_out_path_for(resource)
+# sign out後にホームページ（homes/top）に遷移設定
     root_path
   end
 
